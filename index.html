@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simpson &amp; Gardner | In Development</title>
+<style>
+  :root {
+    --ink: #0e0e0e;
+    --paper: #ffffff;
+    --gold: #c9a227;
+    --muted: #6f6f6f;
+    --line: #e4e4e4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card { width: 100%; max-width: 560px; }
+  .rule { width: 44px; height: 3px; background: var(--gold); margin-bottom: 28px; }
+  h1 {
+    font-size: clamp(28px, 6vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .status {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 12px;
+    margin-bottom: 26px;
+  }
+  p { font-size: 16px; line-height: 1.65; color: #333; margin: 0 0 18px; }
+  .next { border-top: 1px solid var(--line); margin-top: 32px; padding-top: 24px; }
+  .next h2 {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 14px;
+    font-weight: 600;
+  }
+  ol { margin: 0; padding-left: 20px; }
+  li { font-size: 15px; line-height: 1.6; color: #333; margin-bottom: 9px; }
+  code {
+    background: #f5f5f5;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 0.9em;
+  }
+  footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  footer .crown { color: var(--gold); }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #f2f2f2; --paper: #101010; --line: #2a2a2a; --muted: #9a9a9a; }
+    body { background: var(--paper); color: var(--ink); }
+    p, li { color: #cfcfcf; }
+    code { background: #1a1a1a; }
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="rule"></div>
+    <h1>Simpson &amp; Gardner</h1>
+    <span class="status">Website in development</span>
+    <p>
+      This repository is live and publishing correctly. If you are reading this page at a
+      github.io address, the hosting pipeline works end to end.
+    </p>
+    <p>
+      Replace this file with the approved mockup and the real site takes its place, at the
+      same URL, within about a minute.
+    </p>
+
+    <div class="next">
+      <h2>To publish the mockup</h2>
+      <ol>
+        <li>Move this file into <code>versions/</code> so it is kept but not published.</li>
+        <li>Upload the approved mockup to the repo root.</li>
+        <li>Rename it to <code>index.html</code>.</li>
+        <li>Refresh the live URL.</li>
+      </ol>
+    </div>
+
+    <footer>
+      Built by Design&nbsp;Kings, LLC <span class="crown">&#128081;</span> Denton, TX
+    </footer>
+  </main>
+</body>
+</html>

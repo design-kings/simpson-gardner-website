@@ -1,0 +1,29 @@
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Native design files - these belong in Drive / Creative Cloud, not here
+*.ai
+*.psd
+*.psb
+*.indd
+*.idml
+*.eps
+*.sketch
+*.fig
+
+# Print production
+*.pdf
+
+# Raw photography
+*.CR2
+*.CR3
+*.NEF
+*.ARW
+*.dng
+
+# Archives and temp
+*.zip
+*.tmp
+*~
