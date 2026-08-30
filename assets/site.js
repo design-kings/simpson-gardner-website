@@ -65,3 +65,107 @@
     })
     .catch(fallback);
 })();
+
+/* Contact form: posts to Web3Forms, which emails the inquiry on.
+   The access key lives in the form's data-access-key attribute in contact.html. */
+(function(){
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var status = document.getElementById('cf-status');
+  var submit = document.getElementById('cf-submit');
+  var PHONE  = '817-723-9146';
+
+  function fieldOf(el){ return el.closest('.form-field'); }
+
+  function clearError(el){
+    var f = fieldOf(el);
+    if (!f) return;
+    f.classList.remove('invalid');
+    var e = f.querySelector('.form-error');
+    if (e) e.remove();
+  }
+
+  function setError(el, msg){
+    var f = fieldOf(el);
+    if (!f) return;
+    f.classList.add('invalid');
+    if (!f.querySelector('.form-error')){
+      var e = document.createElement('div');
+      e.className = 'form-error';
+      e.textContent = msg;
+      f.appendChild(e);
+    }
+  }
+
+  form.addEventListener('input', function(e){
+    if (e.target.classList.contains('form-input') || e.target.classList.contains('form-textarea')) clearError(e.target);
+  });
+
+  function validate(){
+    var ok = true, first = null;
+    [['cf-name','Please tell us your name.'],
+     ['cf-message','Please tell us a little about your project.']].forEach(function(pair){
+      var el = document.getElementById(pair[0]);
+      clearError(el);
+      if (!el.value.trim()){ setError(el, pair[1]); ok = false; first = first || el; }
+    });
+    var em = document.getElementById('cf-email');
+    clearError(em);
+    if (!em.value.trim()){
+      setError(em, 'Please enter your email address.'); ok = false; first = first || em;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())){
+      setError(em, 'That email address does not look right.'); ok = false; first = first || em;
+    }
+    if (first) first.focus();
+    return ok;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.className = 'form-status';
+    status.textContent = '';
+    if (!validate()) return;
+
+    var key = form.getAttribute('data-access-key');
+    if (!key || key === 'WEB3FORMS_ACCESS_KEY'){
+      status.className = 'form-status error';
+      status.textContent = 'This form is not connected yet. Please call ' + PHONE + '.';
+      return;
+    }
+
+    var data = { access_key: key };
+    new FormData(form).forEach(function(v,k){ data[k] = v; });
+
+    submit.disabled = true;
+    var label = submit.textContent;
+    submit.textContent = 'Sending...';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function(r){ return r.json().then(function(j){ return { ok: r.ok && j.success, body: j }; }); })
+    .then(function(res){
+      if (!res.ok) throw new Error((res.body && res.body.message) || 'send failed');
+      var done = document.createElement('div');
+      done.className = 'form-sent';
+      done.setAttribute('role','status');
+      var h = document.createElement('h3');
+      h.textContent = 'Thank you. Your message is on its way.';
+      var p = document.createElement('p');
+      p.textContent = 'We read every inquiry and will be in touch within one business day. '
+                    + 'If it is urgent, call us at ' + PHONE + '.';
+      done.appendChild(h); done.appendChild(p);
+      form.parentNode.replaceChild(done, form);
+      done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(function(){
+      submit.disabled = false;
+      submit.textContent = label;
+      status.className = 'form-status error';
+      status.textContent = 'Something went wrong sending your message. Please try again, '
+                         + 'or call us at ' + PHONE + '.';
+    });
+  });
+})();

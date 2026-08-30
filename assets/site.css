@@ -208,3 +208,17 @@ footer{background:#111110;padding:56px 60px 32px;}
 .ig-cap{position:absolute;left:0;right:0;bottom:0;padding:12px 10px 10px;background:linear-gradient(to top,rgba(28,28,26,.82),rgba(28,28,26,0));color:#fff;font-family:'Jost',sans-serif;font-size:11px;font-weight:300;line-height:1.45;opacity:0;transition:opacity .3s ease;pointer-events:none;}
 .ig-tile:hover .ig-cap{opacity:1;}
 @media(max-width:768px){.ig-scroll{height:560px;}}
+
+/* Contact form */
+.form-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;}
+.form-input:focus,.form-textarea:focus{border-bottom-color:var(--gold);}
+.form-field.invalid .form-input,.form-field.invalid .form-textarea{border-bottom-color:#b23b3b;}
+.form-error{font-family:'Jost',sans-serif;font-size:11px;font-weight:300;color:#b23b3b;margin-top:2px;}
+.form-submit{align-self:flex-start;margin-top:8px;border:1px solid var(--charcoal);cursor:pointer;transition:background .25s ease,color .25s ease;}
+.form-submit:hover:not(:disabled){background:var(--charcoal);color:#fff;}
+.form-submit:disabled{opacity:.5;cursor:default;}
+.form-status{font-family:'Jost',sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin-top:4px;min-height:1em;}
+.form-status.error{color:#b23b3b;}
+.form-sent{border-left:2px solid var(--gold);padding:24px 0 24px 24px;}
+.form-sent h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--charcoal);margin-bottom:10px;}
+.form-sent p{font-family:'Jost',sans-serif;font-size:14px;font-weight:300;line-height:1.7;color:var(--warm-gray);}

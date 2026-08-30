@@ -21,14 +21,18 @@
   <h1 class="section-title">Let's talk about your build.</h1>
   <p class="section-body" style="margin-bottom:56px;">We'd love to hear about your vision. Fill out the form and we'll be in touch within one business day.</p>
   <div class="contact-split">
-    <div class="contact-form">
-      <div class="form-field"><label class="form-label">Full Name</label><input class="form-input" type="text" placeholder="Your name"></div>
-      <div class="form-field"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="your@email.com"></div>
-      <div class="form-field"><label class="form-label">Phone Number</label><input class="form-input" type="tel" placeholder="(XXX) XXX-XXXX"></div>
-      <div class="form-field"><label class="form-label">City / County</label><input class="form-input" type="text" placeholder="Where will you be building?"></div>
-      <div class="form-field"><label class="form-label">Tell us about your project</label><textarea class="form-textarea" placeholder="Share your vision, timeline, lot details, or anything else..."></textarea></div>
-      <a href="#" class="btn-primary" style="align-self:flex-start;margin-top:8px;border:1px solid var(--charcoal);">Send Message</a>
-    </div>
+    <form class="contact-form" id="contact-form" data-access-key="WEB3FORMS_ACCESS_KEY" novalidate>
+      <input type="hidden" name="subject" value="New website inquiry | Simpson &amp; Gardner">
+      <input type="hidden" name="from_name" value="Simpson &amp; Gardner Website">
+      <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-field"><label class="form-label" for="cf-name">Full Name</label><input class="form-input" id="cf-name" name="name" type="text" placeholder="Your name" autocomplete="name" required></div>
+      <div class="form-field"><label class="form-label" for="cf-email">Email Address</label><input class="form-input" id="cf-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
+      <div class="form-field"><label class="form-label" for="cf-phone">Phone Number</label><input class="form-input" id="cf-phone" name="phone" type="tel" placeholder="(XXX) XXX-XXXX" autocomplete="tel"></div>
+      <div class="form-field"><label class="form-label" for="cf-city">City / County</label><input class="form-input" id="cf-city" name="city" type="text" placeholder="Where will you be building?"></div>
+      <div class="form-field"><label class="form-label" for="cf-message">Tell us about your project</label><textarea class="form-textarea" id="cf-message" name="message" placeholder="Share your vision, timeline, lot details, or anything else..." required></textarea></div>
+      <button type="submit" class="btn-primary form-submit" id="cf-submit">Send Message</button>
+      <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+    </form>
     <div>
       <div class="contact-info-item">
         <div class="contact-info-label">Phone</div>
