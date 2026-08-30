@@ -1,0 +1,59 @@
+name: Refresh Instagram feed
+
+# Pulls recent posts from Instagram into assets/feed/ once a day.
+# Commits only when the posts have actually changed, so history stays clean.
+# Run it by hand any time from the Actions tab.
+
+on:
+  schedule:
+    - cron: '20 11 * * *'   # 11:20 UTC daily, roughly 6:20am Central
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch posts
+        id: fetch
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_LIMIT: '24'
+        run: |
+          set +e
+          python3 tools/fetch-instagram.py
+          code=$?
+          set -e
+          if [ "$code" = "78" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          elif [ "$code" = "0" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            exit $code
+          fi
+
+      - name: Commit updated feed
+        if: steps.fetch.outputs.changed == 'true'
+        run: |
+          git config user.name  "DesignKings Bot"
+          git config user.email "hello@design-kings.com"
+          git add assets/feed
+          git diff --staged --quiet || git commit -m "Refresh Instagram feed"
+          git push
+
+      # Optional: keeps the token alive forever without you touching it.
+      # Only runs if you add a REPO_ADMIN_TOKEN secret with "Secrets: write"
+      # permission on this repo. Without it, rotate IG_TOKEN manually every
+      # ~50 days; the run log tells you how many days are left.
+      - name: Persist refreshed token
+        if: env.ADMIN_TOKEN != '' && steps.fetch.outputs.refreshed_token != ''
+        env:
+          ADMIN_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+        run: |
+          gh secret set IG_TOKEN --body "${{ steps.fetch.outputs.refreshed_token }}" --repo "$GITHUB_REPOSITORY"
+          echo "IG_TOKEN rotated automatically"
