@@ -5,8 +5,10 @@ name: Refresh Instagram feed
 # Run it by hand any time from the Actions tab.
 
 on:
-  schedule:
-    - cron: '20 11 * * *'   # 11:20 UTC daily, roughly 6:20am Central
+  # Daily schedule is switched off until an IG_TOKEN secret exists. Without a
+  # token every run fails and emails the repo owner. Uncomment to switch on.
+  # schedule:
+  #   - cron: '20 11 * * *'   # 11:20 UTC daily, roughly 6:20am Central
   workflow_dispatch:
 
 permissions:

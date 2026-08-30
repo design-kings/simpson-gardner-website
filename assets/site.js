@@ -169,3 +169,28 @@
     });
   });
 })();
+
+/* Mobile menu toggle. The nav links are hidden under 768px, so without this
+   there is no way to move between pages except the footer. */
+(function(){
+  var btn  = document.getElementById('nav-toggle');
+  var menu = document.getElementById('nav-menu');
+  if (!btn || !menu) return;
+  function set(open){
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+  }
+  btn.addEventListener('click', function(){
+    set(btn.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') set(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') set(false);
+  });
+  window.addEventListener('resize', function(){
+    if (window.innerWidth > 768) set(false);
+  });
+})();

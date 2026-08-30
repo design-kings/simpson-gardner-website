@@ -222,3 +222,43 @@ footer{background:#111110;padding:56px 60px 32px;}
 .form-sent{border-left:2px solid var(--gold);padding:24px 0 24px 24px;}
 .form-sent h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--charcoal);margin-bottom:10px;}
 .form-sent p{font-family:'Jost',sans-serif;font-size:14px;font-weight:300;line-height:1.7;color:var(--warm-gray);}
+
+/* ---- Mobile menu ---- */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;margin-left:10px;padding:0;background:none;border:0;cursor:pointer;}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:var(--charcoal);transition:transform .3s ease,opacity .2s ease;}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+@media(max-width:768px){
+  .nav-toggle{display:flex;}
+  .nav-links{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:0;box-shadow:none;max-height:0;overflow:hidden;transition:max-height .32s ease;}
+  .nav-links.open{border-bottom:0.5px solid var(--light-rule);box-shadow:0 14px 28px rgba(28,28,26,0.09);}
+  .nav-links.open{max-height:360px;}
+  .nav-links a{padding:17px 24px;border-top:0.5px solid var(--light-rule);font-size:13px;letter-spacing:0.14em;}
+  .nav-links a.active{border-bottom:none;color:var(--gold);padding-bottom:17px;}
+}
+
+/* ---- Desktop typography: larger reading text, micro-labels left alone ---- */
+@media(min-width:769px){
+  .section-body{font-size:17px;}
+  .pillar-body,.step-body{font-size:15px;}
+  .pillar-title{font-size:19px;}
+  .step-title{font-size:21px;}
+  .portfolio-card-name{font-size:20px;}
+  .testimonial-quote{font-size:21px;}
+  .testimonial-author{font-size:13px;}
+  .contact-info-value{font-size:16px;}
+  .form-input,.form-textarea{font-size:16px;}
+  .form-sent p{font-size:15px;}
+  .form-status{font-size:13px;}
+  .form-error{font-size:12px;}
+  .footer-tagline,.footer-links a{font-size:14px;}
+  .footer-copy{font-size:12px;}
+  .nav-links a{font-size:13px;}
+  .nav-cta{font-size:12px;}
+  .btn-primary,.btn-ghost,.filter-btn,.social-link{font-size:12px;}
+  .project-meta,.g-cap,.feed-handle,.ig-cap{font-size:12px;}
+  .section-eyebrow,.form-label,.contact-info-label,.footer-col-title,.portfolio-card-style{font-size:11px;}
+  .hero-eyebrow,.stat-label{font-size:12px;}
+}
