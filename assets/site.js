@@ -24,3 +24,44 @@
   var tx=0;lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
   lb.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(d>50)show(idx-1);if(d<-50)show(idx+1);});
 })();
+
+/* Instagram feed: render the live posts pulled by the daily Action.
+   Falls back to Instagram's own embed if the feed file is missing, which is
+   also what happens on local file:// previews where fetch is blocked. */
+(function(){
+  var host = document.getElementById('ig-feed');
+  if (!host) return;
+  function fallback(){
+    var url = host.getAttribute('data-fallback');
+    if (!url) return;
+    var f = document.createElement('iframe');
+    f.src = url; f.title = 'Simpson & Gardner on Instagram';
+    f.loading = 'lazy'; f.setAttribute('scrolling','yes');
+    host.innerHTML = ''; host.appendChild(f);
+  }
+  fetch('assets/feed/instagram.json', {cache:'no-cache'})
+    .then(function(r){ if(!r.ok) throw new Error('no feed'); return r.json(); })
+    .then(function(d){
+      var posts = (d && d.posts) || [];
+      if (!posts.length) throw new Error('empty feed');
+      var wrap = document.createElement('div');
+      wrap.className = 'ig-scroll';
+      posts.forEach(function(p){
+        var a = document.createElement('a');
+        a.className = 'ig-tile';
+        a.href = p.permalink; a.target = '_blank'; a.rel = 'noopener';
+        var img = document.createElement('img');
+        img.src = p.img; img.loading = 'lazy';
+        img.alt = p.caption || 'Instagram post from Simpson & Gardner';
+        a.appendChild(img);
+        if (p.caption){
+          var c = document.createElement('div');
+          c.className = 'ig-cap'; c.textContent = p.caption;
+          a.appendChild(c);
+        }
+        wrap.appendChild(a);
+      });
+      host.innerHTML = ''; host.appendChild(wrap);
+    })
+    .catch(fallback);
+})();
