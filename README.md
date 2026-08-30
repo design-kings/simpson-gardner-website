@@ -1,49 +1,60 @@
 # Simpson & Gardner Website
 
-Client website project for Simpson & Gardner. Managed by Design Kings, LLC.
+Client website for Simpson & Gardner Custom Home Builders, Decatur TX.
+Built and managed by Design Kings, LLC.
 
-## What is in here
+**Live:** https://design-kings.github.io/simpson-gardner-website/
 
-| File | What it is |
-|------|-----------|
-| `index.html` | The live site. Whatever is in this file is what visitors see. |
-| `versions/` | Earlier mockups, kept for reference. Not published. |
-| `assets/` | Images, fonts and anything the site loads separately. |
-| `docs/brand.md` | Client brand notes: colors, type, voice. |
+## Structure
+
+Four real pages sharing one stylesheet and one script.
+
+| File | Page |
+|------|------|
+| `index.html` | Home |
+| `about.html` | About |
+| `portfolio.html` | Portfolio |
+| `contact.html` | Contact |
+| `assets/site.css` | All styling for every page |
+| `assets/site.js` | Portfolio filters and the photo lightbox |
+| `assets/img/` | Every photo on the site, 34 files |
+| `versions/` | Earlier drafts. Kept for reference, not published. |
+| `tools/` | The script that generated these pages from the original mockup |
+| `docs/brand.md` | Client brand notes |
 
 ## How to change the site
 
-You do not need any software installed. Everything can be done from github.com in a browser.
+Everything can be done from github.com in a browser. No software needed.
 
-**To edit a page**
+**Edit text on a page**
 
-1. Click the file name, for example `index.html`
+1. Click the page file, for example `about.html`
 2. Click the pencil icon at the top right
 3. Make your change
-4. Scroll down, type a short note in the "Commit changes" box saying what you changed
+4. Scroll down, write a short note describing what you changed
 5. Click "Commit changes"
 
 The live site updates within about a minute.
 
-**To upload a new file**
+**Change something that appears on every page**
 
-1. From the repo home page, click "Add file" then "Upload files"
-2. Drag the file in, or pick it from your device
-3. Add a short note and click "Commit changes"
+Navigation, colors, fonts and spacing live in `assets/site.css`. Edit it once and every
+page picks it up. The navigation markup itself is repeated in each page file, so adding a
+new nav item means editing all four.
 
-Web upload handles files up to 25 MB, which covers full HTML mockups with embedded images.
+**Add a photo**
 
-**To undo something**
+Upload it to `assets/img/`, then reference it from a page as
+`assets/img/your-file-name.jpg`. Keep photos under about 400 KB each.
 
-1. Click "Commits" at the top of the file list
-2. Find the change you want to reverse
-3. Open it and click "Revert"
+**Undo something**
 
-Nothing is ever really lost. Every version of every file is recoverable.
+Click "Commits" at the top of the file list, find the change, open it and click "Revert".
+Every version of every file is recoverable, including deleted ones.
 
 ## Commit notes
 
-Write the note for a person reading it in six months, not for the machine.
+Write for a person reading it in six months, not for the machine.
 
 Good: `Updated services copy per Aug 30 client call`
 Good: `Swapped hero photo for the new exterior shot`
@@ -51,20 +62,28 @@ Not useful: `update`, `changes`, `asdf`
 
 ## Publishing
 
-The live URL is served by GitHub Pages from the `main` branch. Settings for it live under
-Settings then Pages in this repo.
+Served by GitHub Pages from the `main` branch, root folder. Settings live under
+Settings then Pages.
 
-Note on visibility: GitHub Pages will only publish from a **private** repo on a paid plan.
-On the free plan the repo has to be **public** for the site to go live. Client site code is
-normally fine to have public, since it is the same HTML and CSS anyone can already view in
-their browser on the live site. Keep anything with vendor net costs, margins or pricing logic
-in a separate private repo.
+The repo is public, which is what makes Pages hosting free. Making it private requires a
+paid plan and automatically unpublishes the site until Pages is re-enabled. Nothing here is
+sensitive: it is the same HTML and CSS any visitor can already read in their browser.
+
+Anything carrying vendor net costs, margins or pricing logic belongs in a separate private
+repo, never this one.
 
 ## Do not commit
 
-Native design files (`.ai`, `.psd`, `.indd`), print-ready PDFs, and raw photo libraries.
-Git cannot show meaningful differences between versions of those, and they make the repo
-slow to work with. Those stay in Google Drive and Creative Cloud.
+Native design files (`.ai`, `.psd`, `.indd`), print-ready PDFs and raw photo libraries.
+Git cannot show meaningful differences between versions of those and they bloat the repo.
+Those stay in Google Drive and Creative Cloud.
+
+## History
+
+The site began as a single 6.7 MB mockup file with all four pages stacked vertically and
+photos embedded directly in the HTML. `tools/build-from-mockup.py` split it into real pages,
+pulled the photos out into `assets/img/`, and rewired the navigation. The original is kept at
+`versions/mockup-v3-single-file.html`.
 
 ---
 
