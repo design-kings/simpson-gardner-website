@@ -284,9 +284,9 @@ footer{background:#111110;padding:56px 60px 32px;}
 .dir-label{display:block;}
 .dir-mark{display:inline-flex;align-items:center;justify-content:center;flex:none;width:20px;height:20px;border:0.5px solid rgba(255,255,255,0.28);font-family:'Jost',sans-serif;font-size:8px;font-weight:500;letter-spacing:0.04em;color:rgba(255,255,255,0.55);}
 .dir-link:hover .dir-mark{border-color:rgba(255,255,255,0.6);color:rgba(255,255,255,0.9);}
-.dir-soon{color:rgba(255,255,255,0.3);cursor:default;}
-.dir-soon em{display:block;font-style:normal;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.65;margin-top:2px;}
-.dir-soon .dir-mark{border-style:dashed;}
+
+
+
 
 /* Stop single words dropping onto a line of their own */
 h1,h2,h3,.section-title,.cta-text,.hero-title,.about-hero-title,
