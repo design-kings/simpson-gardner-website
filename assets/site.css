@@ -326,3 +326,6 @@ section[id^="project-"]{padding-top:56px;}
   .footer-tagline,.footer-links a,.dir-link{font-size:14px;}
   .contact-info-value{font-size:17px;}
 }
+
+/* keep hyphenated compounds from breaking across lines */
+.nb{white-space:nowrap;}
