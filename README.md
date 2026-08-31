@@ -58,7 +58,7 @@ Every version of every file is recoverable, including deleted ones.
 
 **Bump that number whenever you change the stylesheet or the script.** Browsers cache both
 files aggressively, so without a new number a returning visitor keeps seeing the old design
-even though the new one is deployed. Change `?v=2` to `?v=3` in all four page files, in the
+even though the new one is deployed. Change `?v=3` to `?v=4` in all four page files, in the
 same commit as the CSS or JS change.
 
 Editing page content does not need a bump. Only CSS and JS do.
