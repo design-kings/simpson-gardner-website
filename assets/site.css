@@ -262,3 +262,66 @@ footer{background:#111110;padding:56px 60px 32px;}
   .section-eyebrow,.form-label,.contact-info-label,.footer-col-title,.portfolio-card-style{font-size:11px;}
   .hero-eyebrow,.stat-label{font-size:12px;}
 }
+
+/* ================= Revision pass: logos, footer, spacing, line breaks ================= */
+
+/* Logos, now links home and larger */
+.nav-logo{display:block;line-height:0;}
+.nav-logo img{height:56px;}
+.footer-logo{display:inline-block;line-height:0;}
+.footer-logo img{height:52px;opacity:0.85;transition:opacity .25s ease;}
+.footer-logo:hover img{opacity:1;}
+
+/* Footer: four columns, credit pinned bottom right */
+.footer-top{grid-template-columns:1.7fr 1fr 1fr 1.2fr;gap:48px;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.footer-credit{text-align:right;}
+.footer-credit a{color:rgba(255,255,255,0.45);text-decoration:none;}
+.footer-credit a:hover{color:rgba(255,255,255,0.8);}
+
+/* Directory links with monogram marks */
+.dir-link{display:flex;align-items:center;gap:10px;}
+.dir-mark{display:inline-flex;align-items:center;justify-content:center;flex:none;width:20px;height:20px;border:0.5px solid rgba(255,255,255,0.28);font-family:'Jost',sans-serif;font-size:8px;font-weight:500;letter-spacing:0.04em;color:rgba(255,255,255,0.55);}
+.dir-link:hover .dir-mark{border-color:rgba(255,255,255,0.6);color:rgba(255,255,255,0.9);}
+.dir-soon{color:rgba(255,255,255,0.3);cursor:default;}
+.dir-soon em{font-style:normal;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;}
+.dir-soon .dir-mark{border-style:dashed;}
+
+/* Stop single words dropping onto a line of their own */
+h1,h2,h3,.section-title,.cta-text,.hero-title,.about-hero-title,
+.pillar-title,.step-title,.portfolio-card-name,.form-sent h3,.feed-name{text-wrap:balance;}
+p,.section-body,.pillar-body,.step-body,.footer-tagline,.project-meta,
+.testimonial-quote,.contact-info-value{text-wrap:pretty;}
+
+/* Full-width intro paragraphs */
+.section-body-wide{max-width:none;}
+.cta-text-wide{max-width:none;}
+
+/* Tighter gaps between portfolio projects */
+.project-gallery{margin-bottom:40px;}
+section[id^="project-"]{padding-top:56px;}
+
+/* Contact details column: more room to breathe */
+.contact-info-item{margin-bottom:36px;}
+.contact-info-value{line-height:1.75;}
+.contact-split{grid-template-columns:1fr 0.9fr;gap:64px;}
+
+@media(max-width:768px){
+  .nav-logo img{height:42px;}
+  .footer-logo img{height:44px;}
+  .footer-top{grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}
+  .footer-credit{text-align:left;}
+  .contact-split{grid-template-columns:1fr;gap:48px;}
+  .project-gallery{margin-bottom:28px;}
+  section[id^="project-"]{padding-top:40px;}
+}
+
+/* Supporting text one step up, matching the guarantee copy */
+.pillar-body,.step-body{font-size:15px;}
+.footer-tagline{font-size:14px;}
+@media(min-width:769px){
+  .pillar-body,.step-body{font-size:17px;}
+  .footer-tagline,.footer-links a,.dir-link{font-size:14px;}
+  .contact-info-value{font-size:17px;}
+}
