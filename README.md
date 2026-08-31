@@ -52,6 +52,17 @@ Upload it to `assets/img/`, then reference it from a page as
 Click "Commits" at the top of the file list, find the change, open it and click "Revert".
 Every version of every file is recoverable, including deleted ones.
 
+## Cache busting
+
+`assets/site.css` and `assets/site.js` are linked with a `?v=` number in every page.
+
+**Bump that number whenever you change the stylesheet or the script.** Browsers cache both
+files aggressively, so without a new number a returning visitor keeps seeing the old design
+even though the new one is deployed. Change `?v=2` to `?v=3` in all four page files, in the
+same commit as the CSS or JS change.
+
+Editing page content does not need a bump. Only CSS and JS do.
+
 ## Commit notes
 
 Write for a person reading it in six months, not for the machine.
