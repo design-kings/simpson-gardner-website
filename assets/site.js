@@ -6,7 +6,16 @@
     btns.forEach(function(x){x.classList.remove('active');}); b.classList.add('active');
     var f=b.getAttribute('data-filter');
     cards.forEach(function(c){c.classList.toggle('is-hidden', f!=='all' && c.getAttribute('data-style')!==f);});
+    layoutFeatured();
   });});
+  // An odd number of featured cards: let the last one span the row
+  function layoutFeatured(){
+    document.querySelectorAll('.featured-grid').forEach(function(g){
+      var vis=[].filter.call(g.querySelectorAll('.portfolio-card'),function(c){c.classList.remove('span-2');return !c.classList.contains('is-hidden');});
+      if(vis.length%2===1) vis[vis.length-1].classList.add('span-2');
+    });
+  }
+  layoutFeatured();
   // Lightbox
   var lb=document.getElementById('lb'),img=document.getElementById('lb-img'),cap=document.getElementById('lb-cap');
   var set=[],idx=0;

@@ -329,3 +329,10 @@ section[id^="project-"]{padding-top:56px;}
 
 /* keep hyphenated compounds from breaking across lines */
 .nb{white-space:nowrap;}
+
+/* --- Nov 2 2026: featured cards follow the filter tabs; seven featured homes --- */
+a.portfolio-card{display:block;}
+.featured-grid .portfolio-card.span-2{grid-column:span 2;}
+.portfolio-grid.more{grid-template-columns:repeat(2,1fr);}
+@media(max-width:768px){.featured-grid .portfolio-card.span-2{grid-column:auto;}}
+@media(max-width:480px){.portfolio-grid.more{grid-template-columns:1fr;}}
