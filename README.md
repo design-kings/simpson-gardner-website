@@ -17,7 +17,7 @@ Four real pages sharing one stylesheet and one script.
 | `contact.html` | Contact |
 | `assets/site.css` | All styling for every page |
 | `assets/site.js` | Portfolio filters and the photo lightbox |
-| `assets/img/` | Every photo on the site, 34 files |
+| `assets/img/` | Site photos. Featured project galleries added Nov 2026 live in `assets/img/projects/<project-name>/` |
 | `versions/` | Earlier drafts. Kept for reference, not published. |
 | `tools/` | The script that generated these pages from the original mockup |
 | `docs/brand.md` | Client brand notes |
@@ -58,7 +58,7 @@ Every version of every file is recoverable, including deleted ones.
 
 **Bump that number whenever you change the stylesheet or the script.** Browsers cache both
 files aggressively, so without a new number a returning visitor keeps seeing the old design
-even though the new one is deployed. Change `?v=7` to `?v=8` in all four page files, in the
+even though the new one is deployed. Change `?v=8` to `?v=9` in all four page files, in the
 same commit as the CSS or JS change.
 
 Editing page content does not need a bump. Only CSS and JS do.
